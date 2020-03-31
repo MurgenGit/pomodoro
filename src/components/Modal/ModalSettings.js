@@ -6,6 +6,17 @@ const ModalSettings = ({ showSettings, setShowSettings }) => {
   const [goalTracker, setGoalTracker] = useState(null);
   const [timeToWork, setTimeToWork] = useContext(TimerContext);
 
+  const saveSettings = () => {
+    console.log("Saving Settings");
+  };
+
+  const resetSettings = () => {
+    console.log("reseting settings");
+  };
+
+  const soundTestSettings = () => {
+    console.log("Badumts, how does it sounds?");
+  };
   return (
     <div>
       {showSettings && (
@@ -30,7 +41,7 @@ const ModalSettings = ({ showSettings, setShowSettings }) => {
               <div className="custom-times">
                 <div>
                   <label>Pomodoro</label>
-                  <input />
+                  <input type="text" />
                 </div>
                 <div>
                   <label>Short Break</label>

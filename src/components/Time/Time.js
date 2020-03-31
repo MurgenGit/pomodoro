@@ -66,7 +66,7 @@ const Time = () => {
   return (
     <div className="container">
       <div className="breaks-buttons-container">
-        <button className="break-button" onClick={timeToWork.pomodoro}>
+        <button className="break-button" onClick={runTimer}>
           Pomodoro
         </button>
         <button className="break-button" onClick={shortBreak}>
