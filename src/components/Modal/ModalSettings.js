@@ -4,14 +4,28 @@ import { TimerContext } from "../../bindings/TimerContext";
 
 const ModalSettings = ({ showSettings, setShowSettings }) => {
   const [goalTracker, setGoalTracker] = useState(null);
-  const [timeToWork, setTimeToWork] = useContext(TimerContext);
+  const [shortBreakSetter, setShortBreakSetter] = useState(5);
+  const [pomodoro, setPomodoro] = useState(25);
+  const [longBreakSetter, setLongBreakSetter] = useState(10);
+  const [state, dispatch] = useContext(TimerContext);
 
   const saveSettings = () => {
     console.log("Saving Settings");
+    dispatch({
+      type: "SAVE_SETTINGS",
+      payload: {
+        shortBreakSetter: shortBreakSetter * 60,
+        longBreakSetter: longBreakSetter * 60,
+        pomodoro: pomodoro * 60
+      }
+    });
   };
 
   const resetSettings = () => {
     console.log("reseting settings");
+    dispatch({
+      type: "RESET_SETTINGS"
+    });
   };
 
   const soundTestSettings = () => {
@@ -41,15 +55,25 @@ const ModalSettings = ({ showSettings, setShowSettings }) => {
               <div className="custom-times">
                 <div>
                   <label>Pomodoro</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    value={pomodoro}
+                    onChange={e => setPomodoro(e.target.value)}
+                  />
                 </div>
                 <div>
                   <label>Short Break</label>
-                  <input />
+                  <input
+                    value={shortBreakSetter}
+                    onChange={e => setShortBreakSetter(e.target.value)}
+                  />
                 </div>
                 <div>
                   <label>Long Break</label>
-                  <input />
+                  <input
+                    value={longBreakSetter}
+                    onChange={e => setLongBreakSetter(e.target.value)}
+                  />
                 </div>
               </div>
               <button onClick={saveSettings}>Save</button>

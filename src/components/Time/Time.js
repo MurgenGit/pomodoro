@@ -4,20 +4,16 @@ import "./Time.css";
 import { TimerContext } from "../../bindings/TimerContext";
 
 const Time = () => {
-  const [timeToWork, setTimeToWork] = useContext(TimerContext);
+  const [state, dispatch] = useContext(TimerContext);
+  const [timeToWork, setTimeToWork] = useState(state.pomodoro);
   const [isRunnig, setIsRunning] = useState(false);
-
   const runTimer = e => {
     e.preventDefault();
     setIsRunning(true);
   };
   const resetTimer = e => {
     e.preventDefault();
-    setTimeToWork({
-      pomodoro: 30,
-      shortBreak: 300,
-      longBreak: 600
-    });
+    setTimeToWork(state.pomodoro);
     setIsRunning(false);
   };
   const stopTimer = e => {
@@ -27,36 +23,27 @@ const Time = () => {
 
   const pomodoro = e => {
     e.preventDefault();
-    setTimeToWork(state => ({
-      ...state,
-      pomodoro: 1500
-    }));
+    setTimeToWork(state.pomodoro);
     setIsRunning(true);
   };
 
   const shortBreak = e => {
     e.preventDefault();
-    setTimeToWork(state => ({
-      ...state,
-      shortBreak: 300
-    }));
+    setTimeToWork(state.shortBreak);
     setIsRunning(true);
   };
   const longBreak = e => {
     e.preventDefault();
-    setTimeToWork(state => ({
-      ...state,
-      longBreak: 600
-    }));
+    setTimeToWork(state.longBreak);
     setIsRunning(true);
   };
 
   useEffect(() => {
-    if (timeToWork.pomodoro === 0 || !timeToWork.isRunnig) {
+    if (timeToWork === 0 || !isRunnig) {
       return;
     }
     let timer = setTimeout(() => {
-      setTimeToWork(timeToWork.pomodoro - 1);
+      setTimeToWork(timeToWork - 1);
     }, 1000);
 
     return () => {
@@ -66,7 +53,7 @@ const Time = () => {
   return (
     <div className="container">
       <div className="breaks-buttons-container">
-        <button className="break-button" onClick={runTimer}>
+        <button className="break-button" onClick={pomodoro}>
           Pomodoro
         </button>
         <button className="break-button" onClick={shortBreak}>
@@ -77,10 +64,8 @@ const Time = () => {
         </button>
       </div>
       <div className="main-timer">
-        {Math.floor(timeToWork.pomodoro / 60)}:
-        {timeToWork.pomodoro % 60 >= 10
-          ? timeToWork.pomodoro % 60
-          : "0" + (timeToWork.pomodoro % 60)}
+        {Math.floor(timeToWork / 60)}:
+        {timeToWork % 60 >= 10 ? timeToWork % 60 : "0" + (timeToWork % 60)}
       </div>
       <div className="button-container">
         <button className="start-button" onClick={runTimer}>
