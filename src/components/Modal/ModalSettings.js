@@ -3,11 +3,11 @@ import "./ModalStyles.css";
 import { TimerContext } from "../../bindings/TimerContext";
 
 const ModalSettings = ({ showSettings, setShowSettings }) => {
-  const [goalTracker, setGoalTracker] = useState(null);
+  const [state, dispatch] = useContext(TimerContext);
+  const [goalTracker, setGoalTracker] = useState(state.goal);
   const [shortBreakSetter, setShortBreakSetter] = useState(5);
   const [pomodoro, setPomodoro] = useState(25);
   const [longBreakSetter, setLongBreakSetter] = useState(10);
-  const [state, dispatch] = useContext(TimerContext);
 
   const saveSettings = () => {
     console.log("Saving Settings");
@@ -16,16 +16,19 @@ const ModalSettings = ({ showSettings, setShowSettings }) => {
       payload: {
         shortBreakSetter: shortBreakSetter * 60,
         longBreakSetter: longBreakSetter * 60,
-        pomodoro: pomodoro * 60
-      }
+        pomodoro: pomodoro * 60,
+        goalTracker: goalTracker,
+      },
     });
+    setShowSettings(false);
   };
 
   const resetSettings = () => {
     console.log("reseting settings");
     dispatch({
-      type: "RESET_SETTINGS"
+      type: "RESET_SETTINGS",
     });
+    setShowSettings(false);
   };
 
   const soundTestSettings = () => {
@@ -36,14 +39,20 @@ const ModalSettings = ({ showSettings, setShowSettings }) => {
       {showSettings && (
         <div className="modal-container">
           <div className="modal-body">
-            <button onClick={() => setShowSettings(false)}>X</button>
+            <button
+              className="close-button"
+              onClick={() => setShowSettings(false)}
+            >
+              <i className="fas fa-times" />
+            </button>
             <h2>Options</h2>
             <h4>User preferences</h4>
             <div>
               Pomodoro goal for the day
               <input
+                type="nubmer"
                 value={goalTracker}
-                onChange={e => setGoalTracker(e.target.value)}
+                onChange={(e) => setGoalTracker(e.target.value)}
               />
               <h4>Select Sound</h4>
               {/* Add Sounds */}
@@ -56,29 +65,37 @@ const ModalSettings = ({ showSettings, setShowSettings }) => {
                 <div>
                   <label>Pomodoro</label>
                   <input
-                    type="text"
+                    type="number"
                     value={pomodoro}
-                    onChange={e => setPomodoro(e.target.value)}
+                    onChange={(e) => setPomodoro(e.target.value)}
                   />
                 </div>
                 <div>
                   <label>Short Break</label>
                   <input
+                    type="number"
                     value={shortBreakSetter}
-                    onChange={e => setShortBreakSetter(e.target.value)}
+                    onChange={(e) => setShortBreakSetter(e.target.value)}
                   />
                 </div>
                 <div>
                   <label>Long Break</label>
                   <input
+                    type="number"
                     value={longBreakSetter}
-                    onChange={e => setLongBreakSetter(e.target.value)}
+                    onChange={(e) => setLongBreakSetter(e.target.value)}
                   />
                 </div>
               </div>
-              <button onClick={saveSettings}>Save</button>
-              <button onClick={resetSettings}>Reset</button>
-              <button onClick={soundTestSettings}>Sound Test</button>
+              <button onClick={saveSettings} className="modal-button">
+                Save
+              </button>
+              <button onClick={resetSettings} className="modal-button">
+                Reset
+              </button>
+              <button onClick={soundTestSettings} className="modal-button">
+                Sound Test
+              </button>
             </div>
           </div>
         </div>

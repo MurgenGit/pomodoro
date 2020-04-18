@@ -1,0 +1,72 @@
+h5 {
+  margin: 0;
+  padding: 0;
+  font-size: 17px;
+}
+h6 {
+  text-rendering: optimizeLegibility;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+.panel-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.panel {
+  font-size: 16.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+  background: #f2f2f2;
+  border: solid 1px #e6e6e6;
+  width: 300px;
+  height: fit-content;
+  margin: 0 15px 22px 15px;
+  padding: 20px;
+}
+
+.disc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16.5px;
+  font-weight: normal;
+  padding: 0;
+  list-style-position: inside;
+}
+
+.subheader {
+  line-height: 1.3;
+  color: #6f6f6f;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.panel-button {
+  width: auto;
+  background: #2ba6cb;
+  border: 1px solid #1e728c;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px 20px 11px;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.close-button {
+}

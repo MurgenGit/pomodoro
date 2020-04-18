@@ -7,6 +7,7 @@
   left: 0;
   display: flex;
   align-items: center;
+  text-align: left;
   justify-content: center;
   height: 100%;
   width: 100%;
@@ -16,7 +17,61 @@
 .modal-body {
   width: 700px;
   height: fit-content;
+  padding: 30px;
   border: 1px solid #eee;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.unCompletedPomodoros {
+  width: 20px;
+  height: 20px;
+  border: 1px solid green;
+  border-radius: 50%;
+  background: white;
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.completedPomodoros {
+  width: 20px;
+  height: 20px;
+  border: 1px solid green;
+  border-radius: 50%;
+  background: green;
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.pomodoro-goal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.margin-right {
+  margin-right: 16px;
+}
+
+.modal-button {
+  width: auto;
+  background: #2ba6cb;
+  border: 1px solid #1e728c;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 3px;
+  padding: 10px 20px 11px;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
 }
